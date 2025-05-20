@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, IndianRupee } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { convertUSDtoINR } from '@/lib/currency';
 
 type ProductCardProps = {
   id: string;
@@ -22,6 +23,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
   amazonUrl,
 }) => {
+  const inrPrice = convertUSDtoINR(price);
+  
   return (
     <Card className="card-hover overflow-hidden">
       <div className="relative overflow-hidden pt-[60%]">
@@ -34,7 +37,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <CardHeader className="pb-2">
         <h3 className="text-lg font-bold line-clamp-2">{title}</h3>
         <div className="flex items-center justify-between">
-          <p className="font-semibold text-lg text-orange">{price}</p>
+          <div>
+            <p className="font-semibold text-lg text-orange">{price}</p>
+            <p className="text-sm text-gray-600 flex items-center">
+              <IndianRupee className="h-3 w-3 mr-1" /> {inrPrice}
+            </p>
+          </div>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <span key={i} className={i < rating ? "text-yellow-500" : "text-gray-300"}>
@@ -50,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <CardFooter>
         <Button asChild className="w-full btn-primary">
           <a href={amazonUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-            View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
+            View Details <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>
       </CardFooter>
