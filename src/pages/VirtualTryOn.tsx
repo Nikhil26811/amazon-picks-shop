@@ -1,11 +1,10 @@
-
 import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from "sonner";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Camera, Upload, TShirt } from "lucide-react";
+import { Camera, Upload, Shirt } from "lucide-react";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ClothingItem from '@/components/ClothingItem';
@@ -29,7 +28,7 @@ const clothingItems = [
   {
     id: "3", 
     name: "Black Hoodie",
-    imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
+    imageUrl: "https://images.unsplash.com/photo-1556566588028-4147f3842f27",
     price: "$39.99",
     affiliateLink: "#"
   },
@@ -252,7 +251,7 @@ const VirtualTryOn = () => {
                       />
                     ) : (
                       <div className="text-gray-400 flex flex-col items-center">
-                        <TShirt className="h-8 w-8 mb-2" />
+                        <Shirt className="h-8 w-8 mb-2" />
                         <span>No image uploaded</span>
                       </div>
                     )}
