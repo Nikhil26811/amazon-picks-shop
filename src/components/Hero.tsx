@@ -25,6 +25,11 @@ const Hero = () => {
                 Manage Products
               </Link>
             </Button>
+            <Button asChild className="btn-primary text-lg px-8 py-4">
+              <Link to="/try-on">
+                Virtual Try-On
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

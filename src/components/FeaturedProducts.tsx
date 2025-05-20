@@ -21,7 +21,6 @@ const fallbackProducts = [
     imageUrl: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
     price: "$149.99",
     rating: 5,
-    amazonUrl: "#",
     affiliateLink: "#",
   },
   {
@@ -31,7 +30,6 @@ const fallbackProducts = [
     imageUrl: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
     price: "$249.99",
     rating: 4,
-    amazonUrl: "#",
     affiliateLink: "#",
   },
   {
@@ -41,7 +39,6 @@ const fallbackProducts = [
     imageUrl: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
     price: "$89.99",
     rating: 4,
-    amazonUrl: "#",
     affiliateLink: "#",
   },
   {
@@ -51,7 +48,6 @@ const fallbackProducts = [
     imageUrl: "https://images.unsplash.com/photo-1500673922987-e212871fec22",
     price: "$34.99",
     rating: 5,
-    amazonUrl: "#",
     affiliateLink: "#",
   },
   {
@@ -61,7 +57,6 @@ const fallbackProducts = [
     imageUrl: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
     price: "$59.99",
     rating: 4,
-    amazonUrl: "#",
     affiliateLink: "#",
   },
 ];
@@ -100,7 +95,7 @@ const FeaturedProducts = () => {
               imageUrl={product.imageUrl}
               price={product.price}
               rating={product.rating}
-              amazonUrl={product.affiliateLink || product.amazonUrl || "#"}
+              amazonUrl={product.affiliateLink}
             />
           ))}
         </div>
