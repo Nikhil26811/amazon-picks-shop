@@ -1,9 +1,19 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 
-// Example product data (you would replace this with your actual Amazon Associates products)
-const products = [
+type Product = {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  imageUrl: string;
+  affiliateLink: string;
+  rating: number;
+};
+
+// Fallback products in case there are no saved products
+const fallbackProducts = [
   {
     id: "1",
     title: "Premium Wireless Headphones",
@@ -12,6 +22,7 @@ const products = [
     price: "$149.99",
     rating: 5,
     amazonUrl: "#",
+    affiliateLink: "#",
   },
   {
     id: "2",
@@ -21,6 +32,7 @@ const products = [
     price: "$249.99",
     rating: 4,
     amazonUrl: "#",
+    affiliateLink: "#",
   },
   {
     id: "3",
@@ -30,6 +42,7 @@ const products = [
     price: "$89.99",
     rating: 4,
     amazonUrl: "#",
+    affiliateLink: "#",
   },
   {
     id: "4",
@@ -39,6 +52,7 @@ const products = [
     price: "$34.99",
     rating: 5,
     amazonUrl: "#",
+    affiliateLink: "#",
   },
   {
     id: "5",
@@ -48,10 +62,24 @@ const products = [
     price: "$59.99",
     rating: 4,
     amazonUrl: "#",
+    affiliateLink: "#",
   },
 ];
 
 const FeaturedProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Load products from localStorage
+    const savedProducts = localStorage.getItem('affiliateProducts');
+    if (savedProducts && JSON.parse(savedProducts).length > 0) {
+      setProducts(JSON.parse(savedProducts));
+    } else {
+      // Use fallback products if no saved products
+      setProducts(fallbackProducts as Product[]);
+    }
+  }, []);
+
   return (
     <section id="featured" className="py-16">
       <div className="container mx-auto px-4">
@@ -64,7 +92,16 @@ const FeaturedProducts = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              description={product.description}
+              imageUrl={product.imageUrl}
+              price={product.price}
+              rating={product.rating}
+              amazonUrl={product.affiliateLink || product.amazonUrl || "#"}
+            />
           ))}
         </div>
       </div>
